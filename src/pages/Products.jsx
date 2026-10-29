@@ -95,7 +95,7 @@ const Products = () => {
         title="VR Headsets, Cinema & Gaming Products | VR World"
         description="Browse the VR Explorer X1 headset, VR Cinema Pro 8K streaming, and VR Arena multiplayer pass. Compare features, ratings, and pricing."
         keywords="VR headset buy, VR Explorer X1, VR Cinema Pro, VR games pass, metaverse hardware, best VR headset"
-        canonical="https://vrworld.com/products"
+        canonical="https://vr-world-wine.vercel.app/products"
         jsonLd={productsSchema}
       />
 

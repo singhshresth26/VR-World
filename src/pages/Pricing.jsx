@@ -118,7 +118,7 @@ const Pricing = () => {
         title="VR Subscription Plans & Membership Pricing | VR World"
         description="Affordable VR membership tiers: Starter (Free), Pro (₹999/mo) with unlimited 4K multiplayer titles, and Enterprise arcade solutions."
         keywords="VR membership, VR subscription pricing, VR game pass price, virtual reality cost, VR arcade pricing"
-        canonical="https://vrworld.com/pricing"
+        canonical="https://vr-world-wine.vercel.app/pricing"
         jsonLd={pricingSchema}
       />
 

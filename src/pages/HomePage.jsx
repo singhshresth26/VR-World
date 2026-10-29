@@ -21,7 +21,7 @@ const HomePage = ({ togglePlay }) => {
         title="VR World — Immersive Virtual Reality, Games & Metaverse Experiences"
         description="Step into the future with VR World. Discover ultra-responsive VR headsets, immersive 360° movies, multiplayer games, and virtual reality experiences."
         keywords="VR World, virtual reality platform, metaverse, VR games, 6DoF headsets, VR movies, spatial audio"
-        canonical="https://vrworld.com/"
+        canonical="https://vr-world-wine.vercel.app/"
       />
       <Hero togglePlay={togglePlay} />
       <Quotes />

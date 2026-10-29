@@ -9,8 +9,10 @@ const SEO = ({
   ogType = "website",
   jsonLd,
 }) => {
-  const location = useLocation();
-  const currentUrl = `https://vrworld.com${location.pathname}`;
+  const currentUrl =
+    typeof window !== "undefined"
+      ? `${window.location.origin}${location.pathname}`
+      : `https://vr-world-wine.vercel.app${location.pathname}`;
 
   useEffect(() => {
     // 1. Update Title

@@ -39,12 +39,12 @@ const contactSchema = {
       "@type": "ContactPage",
       "name": "Contact VR World Support & Head Office",
       "description": "Get in touch with VR World for hardware support, enterprise arcade inquiries, or to book a free VR demo.",
-      "url": "https://vrworld.com/contact"
+      "url": "https://vr-world-wine.vercel.app/contact"
     },
     {
       "@type": "LocalBusiness",
       "name": "VR World Experience Centre",
-      "image": "https://vrworld.com/og-image.png",
+      "image": "https://vr-world-wine.vercel.app/og-image.png",
       "telephone": "+91-98765-43210",
       "email": "hello@vrworld.com",
       "address": {
@@ -109,7 +109,7 @@ const Contact = () => {
         title="Contact Us & Experience Centres | VR World"
         description="Have questions about VR headsets, software subscriptions, or need enterprise support? Contact the VR World team in Hyderabad, India."
         keywords="contact VR World, VR headset support, book VR demo, VR experience centre Hyderabad, virtual reality inquiries"
-        canonical="https://vrworld.com/contact"
+        canonical="https://vr-world-wine.vercel.app/contact"
         jsonLd={contactSchema}
       />
 
