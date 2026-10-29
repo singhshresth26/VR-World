@@ -1,6 +1,7 @@
 import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
 import { FaCheck, FaTimes } from "react-icons/fa";
+import SEO from "../Components/SEO/SEO";
 import AOS from "aos";
 
 const plans = [
@@ -73,6 +74,36 @@ const faqs = [
   },
 ];
 
+const pricingSchema = {
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "FAQPage",
+      "mainEntity": faqs.map((faq) => ({
+        "@type": "Question",
+        "name": faq.q,
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": faq.a,
+        },
+      })),
+    },
+    {
+      "@type": "Product",
+      "name": "VR World Subscriptions",
+      "description": "Flexible virtual reality access plans from free trial to Pro 4K gaming and Enterprise arcade licences.",
+      "offers": plans.map((plan) => ({
+        "@type": "Offer",
+        "name": `${plan.name} Plan`,
+        "priceCurrency": "INR",
+        "price": plan.price === "Free" ? "0" : plan.price.replace(/[^0-9]/g, ""),
+        "description": plan.description,
+        "availability": "https://schema.org/InStock",
+      })),
+    },
+  ],
+};
+
 const Pricing = () => {
   const [openFaq, setOpenFaq] = React.useState(null);
 
@@ -83,6 +114,14 @@ const Pricing = () => {
 
   return (
     <main className="bg-darker min-h-screen page-enter">
+      <SEO
+        title="VR Subscription Plans & Membership Pricing | VR World"
+        description="Affordable VR membership tiers: Starter (Free), Pro (₹999/mo) with unlimited 4K multiplayer titles, and Enterprise arcade solutions."
+        keywords="VR membership, VR subscription pricing, VR game pass price, virtual reality cost, VR arcade pricing"
+        canonical="https://vrworld.com/pricing"
+        jsonLd={pricingSchema}
+      />
+
       {/* Header */}
       <section className="relative pt-32 pb-20 overflow-hidden grid-pattern">
         <div className="absolute inset-0 radial-overlay pointer-events-none" />
@@ -106,10 +145,10 @@ const Pricing = () => {
       </section>
 
       {/* Pricing Cards */}
-      <section className="container -mt-4 pb-20">
+      <section className="container -mt-4 pb-20" aria-label="Subscription tiers">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-5xl mx-auto">
           {plans.map((plan, index) => (
-            <div
+            <article
               key={plan.name}
               data-aos="fade-up"
               data-aos-delay={index * 100}
@@ -126,9 +165,9 @@ const Pricing = () => {
               )}
 
               <div className="text-center mb-8">
-                <h3 className="text-lg font-semibold text-white/80 mb-1">
+                <h2 className="text-lg font-semibold text-white/80 mb-1">
                   {plan.name}
-                </h3>
+                </h2>
                 <div className="flex items-baseline justify-center gap-1">
                   <span className="text-4xl font-bold text-white">
                     {plan.price}
@@ -142,13 +181,13 @@ const Pricing = () => {
                 </p>
               </div>
 
-              <ul className="space-y-3 mb-8">
+              <ul className="space-y-3 mb-8" aria-label={`${plan.name} features`}>
                 {plan.features.map((feat, i) => (
                   <li key={i} className="flex items-center gap-3 text-sm">
                     {feat.included ? (
-                      <FaCheck className="text-primary shrink-0" />
+                      <FaCheck className="text-primary shrink-0" aria-hidden="true" />
                     ) : (
-                      <FaTimes className="text-white/20 shrink-0" />
+                      <FaTimes className="text-white/20 shrink-0" aria-hidden="true" />
                     )}
                     <span
                       className={
@@ -168,16 +207,17 @@ const Pricing = () => {
                     ? "primary-btn"
                     : "border border-white/20 text-white hover:bg-white/10"
                 }`}
+                aria-label={`Choose ${plan.name} plan`}
               >
                 {plan.price === "Free" ? "Get Started" : "Start Free Trial"}
               </Link>
-            </div>
+            </article>
           ))}
         </div>
       </section>
 
       {/* FAQ */}
-      <section className="container pb-20 max-w-2xl">
+      <section className="container pb-20 max-w-2xl" aria-label="Frequently Asked Questions">
         <div className="text-center mb-12">
           <span data-aos="fade-up" className="section-subtitle block">
             FAQ
@@ -197,7 +237,9 @@ const Pricing = () => {
             >
               <button
                 onClick={() => setOpenFaq(openFaq === i ? null : i)}
-                className="w-full flex items-center justify-between p-5 text-left"
+                className="w-full flex items-center justify-between p-5 text-left focus:outline-none focus:ring-1 focus:ring-primary/50"
+                aria-expanded={openFaq === i}
+                aria-controls={`faq-answer-${i}`}
               >
                 <span className="font-medium text-white/80 text-[15px]">
                   {faq.q}
@@ -206,12 +248,13 @@ const Pricing = () => {
                   className={`text-primary text-xl transition-transform duration-300 ${
                     openFaq === i ? "rotate-45" : ""
                   }`}
+                  aria-hidden="true"
                 >
                   +
                 </span>
               </button>
               {openFaq === i && (
-                <div className="px-5 pb-5 -mt-1">
+                <div id={`faq-answer-${i}`} className="px-5 pb-5 -mt-1">
                   <p className="text-white/50 text-sm leading-relaxed">
                     {faq.a}
                   </p>

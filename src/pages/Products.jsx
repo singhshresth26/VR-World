@@ -3,7 +3,8 @@ import { Link } from "react-router-dom";
 import HeroPng from "../assets/hero.png";
 import Banner1 from "../assets/banner1.png";
 import Banner2 from "../assets/banner2.png";
-import { FaStar, FaUsers, FaVrCardboard } from "react-icons/fa";
+import { FaStar, FaVrCardboard } from "react-icons/fa";
+import SEO from "../Components/SEO/SEO";
 import AOS from "aos";
 
 const products = [
@@ -47,6 +48,34 @@ const products = [
 
 const categories = ["All", "Headset", "Software", "Gaming", "Accessories"];
 
+const productsSchema = {
+  "@context": "https://schema.org",
+  "@type": "ItemList",
+  "name": "VR World Products & Gear",
+  "description": "Premium virtual reality headsets, cinema streaming subscriptions, and multiplayer gaming passes.",
+  "itemListElement": products.map((item, index) => ({
+    "@type": "ListItem",
+    "position": index + 1,
+    "item": {
+      "@type": "Product",
+      "name": item.name,
+      "description": item.description,
+      "category": item.category,
+      "aggregateRating": {
+        "@type": "AggregateRating",
+        "ratingValue": item.rating,
+        "reviewCount": item.reviews
+      },
+      "offers": {
+        "@type": "Offer",
+        "priceCurrency": "INR",
+        "price": item.price.replace(/[^0-9]/g, ""),
+        "availability": "https://schema.org/InStock"
+      }
+    }
+  }))
+};
+
 const Products = () => {
   const [activeCategory, setActiveCategory] = React.useState("All");
 
@@ -62,6 +91,14 @@ const Products = () => {
 
   return (
     <main className="bg-darker min-h-screen page-enter">
+      <SEO
+        title="VR Headsets, Cinema & Gaming Products | VR World"
+        description="Browse the VR Explorer X1 headset, VR Cinema Pro 8K streaming, and VR Arena multiplayer pass. Compare features, ratings, and pricing."
+        keywords="VR headset buy, VR Explorer X1, VR Cinema Pro, VR games pass, metaverse hardware, best VR headset"
+        canonical="https://vrworld.com/products"
+        jsonLd={productsSchema}
+      />
+
       {/* Hero Banner */}
       <section className="relative pt-32 pb-20 overflow-hidden grid-pattern">
         <div className="absolute inset-0 radial-overlay pointer-events-none" />
@@ -85,7 +122,7 @@ const Products = () => {
       </section>
 
       {/* Category Filter */}
-      <section className="container -mt-4 relative z-20">
+      <section className="container -mt-4 relative z-20" aria-label="Product categories">
         <div
           data-aos="fade-up"
           data-aos-delay="300"
@@ -108,10 +145,10 @@ const Products = () => {
       </section>
 
       {/* Product Grid */}
-      <section className="container py-16">
+      <section className="container py-16" aria-label="Available products">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {filtered.map((product, index) => (
-            <div
+            <article
               key={product.id}
               data-aos="fade-up"
               data-aos-delay={index * 100}
@@ -121,7 +158,8 @@ const Products = () => {
               <div className="relative h-56 bg-gradient-to-br from-dark to-darker flex items-center justify-center p-6 overflow-hidden">
                 <img
                   src={product.image}
-                  alt={product.name}
+                  alt={`${product.name} — ${product.category} with 6DoF tracking and spatial immersion`}
+                  loading="lazy"
                   className="max-h-full object-contain group-hover:scale-110 transition-transform duration-500"
                 />
                 {/* Tag badge */}
@@ -137,16 +175,16 @@ const Products = () => {
                     {product.category}
                   </span>
                   <div className="flex items-center gap-1 text-yellow-400 text-sm">
-                    <FaStar />
+                    <FaStar aria-hidden="true" />
                     <span className="text-white/70">{product.rating}</span>
                     <span className="text-white/30 text-xs">
                       ({product.reviews})
                     </span>
                   </div>
                 </div>
-                <h3 className="text-xl font-semibold text-white">
+                <h2 className="text-xl font-semibold text-white">
                   {product.name}
-                </h3>
+                </h2>
                 <p className="text-white/40 text-sm leading-relaxed">
                   {product.description}
                 </p>
@@ -154,18 +192,18 @@ const Products = () => {
                   <span className="text-lg font-bold gradient-text">
                     {product.price}
                   </span>
-                  <button className="primary-btn text-sm py-2 px-5">
+                  <button className="primary-btn text-sm py-2 px-5" aria-label={`Add ${product.name} to cart`}>
                     Add to Cart
                   </button>
                 </div>
               </div>
-            </div>
+            </article>
           ))}
         </div>
 
         {filtered.length === 0 && (
           <div className="text-center py-20 text-white/30">
-            <FaVrCardboard className="text-5xl mx-auto mb-4 text-white/10" />
+            <FaVrCardboard className="text-5xl mx-auto mb-4 text-white/10" aria-hidden="true" />
             <p className="text-lg">No products in this category yet.</p>
           </div>
         )}

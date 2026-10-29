@@ -27,7 +27,7 @@ const testimonials = [
 
 const Testimonials = () => {
   return (
-    <section className="py-20 bg-darker relative overflow-hidden">
+    <section className="py-20 bg-darker relative overflow-hidden" aria-label="Customer testimonials and reviews">
       {/* Background accent */}
       <div className="absolute bottom-0 right-0 w-[400px] h-[400px] bg-secondary/5 rounded-full blur-3xl pointer-events-none" />
 
@@ -47,41 +47,42 @@ const Testimonials = () => {
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-5xl mx-auto">
           {testimonials.map((t, i) => (
-            <div
+            <article
               key={i}
               data-aos="fade-up"
               data-aos-delay={i * 100}
               className="testimonial-card glass-card p-7 relative"
             >
-              <FaQuoteRight className="absolute top-6 right-6 text-2xl text-white/5" />
+              <FaQuoteRight className="absolute top-6 right-6 text-2xl text-white/5" aria-hidden="true" />
 
               {/* Stars */}
-              <div className="flex gap-1 mb-4">
+              <div className="flex gap-1 mb-4" aria-label={`Rated ${t.rating} out of 5 stars`}>
                 {Array.from({ length: 5 }).map((_, j) => (
                   <FaStar
                     key={j}
                     className={`text-sm ${
                       j < t.rating ? "text-yellow-400" : "text-white/10"
                     }`}
+                    aria-hidden="true"
                   />
                 ))}
               </div>
 
-              <p className="text-white/60 text-sm leading-relaxed mb-6">
+              <blockquote className="text-white/60 text-sm leading-relaxed mb-6">
                 "{t.text}"
-              </p>
+              </blockquote>
 
               <div className="flex items-center gap-3">
                 {/* Avatar placeholder with initials */}
-                <div className="w-10 h-10 rounded-full bg-gradient-to-br from-primary to-secondary flex items-center justify-center text-white text-xs font-bold">
+                <div className="w-10 h-10 rounded-full bg-gradient-to-br from-primary to-secondary flex items-center justify-center text-white text-xs font-bold" aria-hidden="true">
                   {t.initials}
                 </div>
                 <div>
-                  <p className="text-white text-sm font-semibold">{t.name}</p>
+                  <h3 className="text-white text-sm font-semibold">{t.name}</h3>
                   <p className="text-white/40 text-xs">{t.role}</p>
                 </div>
               </div>
-            </div>
+            </article>
           ))}
         </div>
       </div>

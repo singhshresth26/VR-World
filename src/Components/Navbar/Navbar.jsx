@@ -40,11 +40,13 @@ const Navbar = () => {
       <div className="container py-3 md:py-0">
         <div className="flex justify-between items-center">
           {/* Logo */}
-          <Link to="/" className="flex items-center gap-2.5 group">
+          <Link to="/" className="flex items-center gap-2.5 group" aria-label="VR World Homepage">
             <img
               src={Logo}
-              alt="VR World logo"
-              className="h-12 group-hover:scale-105 transition-transform duration-300"
+              alt="VR World brand logo"
+              width="48"
+              height="48"
+              className="h-12 w-auto group-hover:scale-105 transition-transform duration-300"
             />
             <p className="text-2xl text-white tracking-tight">
               VR <span className="font-bold gradient-text">World</span>
@@ -52,7 +54,7 @@ const Navbar = () => {
           </Link>
 
           {/* Desktop Navigation */}
-          <nav className="hidden md:block">
+          <nav className="hidden md:block" aria-label="Main desktop navigation">
             <ul className="flex items-center gap-1">
               {NavLinks.map(({ id, name, link }) => {
                 const isActive = location.pathname === link;

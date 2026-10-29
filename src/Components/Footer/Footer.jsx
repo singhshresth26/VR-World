@@ -18,28 +18,43 @@ const QuickLinks = [
 ];
 
 const SupportLinks = [
-  { title: "Help Centre", link: "#" },
-  { title: "Community", link: "#" },
-  { title: "Developers", link: "#" },
-  { title: "Status", link: "#" },
+  { title: "Help Centre", link: "/contact" },
+  { title: "Community Forums", link: "#community" },
+  { title: "Developer SDK", link: "#developers" },
+  { title: "System Status", link: "#status" },
 ];
 
 const LegalLinks = [
-  { title: "Privacy Policy", link: "#" },
-  { title: "Terms of Service", link: "#" },
-  { title: "Cookie Policy", link: "#" },
-  { title: "Accessibility", link: "#" },
+  { title: "Privacy Policy", link: "#privacy" },
+  { title: "Terms of Service", link: "#terms" },
+  { title: "Cookie Policy", link: "#cookies" },
+  { title: "Accessibility", link: "#accessibility" },
+];
+
+const socialPlatforms = [
+  { name: "Facebook", icon: FaFacebook, href: "https://facebook.com/vrworld" },
+  { name: "Instagram", icon: FaInstagram, href: "https://instagram.com/vrworld" },
+  { name: "Twitter / X", icon: FaTwitter, href: "https://twitter.com/VRWorldOfficial" },
+  { name: "LinkedIn", icon: FaLinkedin, href: "https://linkedin.com/company/vrworld" },
+  { name: "YouTube", icon: FaYoutube, href: "https://youtube.com/@VRWorldOfficial" },
 ];
 
 const Footer = () => {
   return (
-    <footer className="bg-dark/80 border-t border-white/5 mt-0">
+    <footer className="bg-dark/80 border-t border-white/5 mt-0" role="contentinfo">
       <div className="container py-14">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-10">
           {/* Brand column */}
           <div className="lg:col-span-2 space-y-5">
-            <Link to="/" className="flex items-center gap-2.5">
-              <img src={Logo} alt="VR World" className="h-10" />
+            <Link to="/" className="flex items-center gap-2.5" aria-label="VR World Home">
+              <img
+                src={Logo}
+                alt="VR World brand logo"
+                width="40"
+                height="40"
+                loading="lazy"
+                className="h-10 w-auto"
+              />
               <span className="text-xl text-white font-bold tracking-tight">
                 VR <span className="gradient-text">World</span>
               </span>
@@ -50,42 +65,47 @@ const Footer = () => {
             </p>
 
             {/* Contact info */}
-            <div className="space-y-2.5 text-sm text-white/50">
+            <address className="space-y-2.5 text-sm text-white/50 not-italic">
               <div className="flex items-center gap-2.5">
-                <HiLocationMarker className="text-primary shrink-0" />
-                <span>Hyderabad, Telangana, India</span>
+                <HiLocationMarker className="text-primary shrink-0" aria-hidden="true" />
+                <span>HITEC City, Hyderabad, Telangana, India</span>
               </div>
               <div className="flex items-center gap-2.5">
-                <HiPhone className="text-primary shrink-0" />
-                <span>+91 98765 43210</span>
+                <HiPhone className="text-primary shrink-0" aria-hidden="true" />
+                <a href="tel:+919876543210" className="hover:text-primary transition-colors">
+                  +91 98765 43210
+                </a>
               </div>
               <div className="flex items-center gap-2.5">
-                <HiMail className="text-primary shrink-0" />
-                <span>hello@vrworld.com</span>
+                <HiMail className="text-primary shrink-0" aria-hidden="true" />
+                <a href="mailto:hello@vrworld.com" className="hover:text-primary transition-colors">
+                  hello@vrworld.com
+                </a>
               </div>
-            </div>
+            </address>
 
             {/* Social icons */}
-            <div className="flex items-center gap-3 pt-1">
-              {[FaFacebook, FaInstagram, FaTwitter, FaLinkedin, FaYoutube].map(
-                (Icon, i) => (
-                  <a
-                    key={i}
-                    href="#"
-                    className="w-9 h-9 rounded-lg bg-white/5 hover:bg-primary/20 flex items-center justify-center text-white/50 hover:text-primary transition-all duration-300"
-                  >
-                    <Icon size={16} />
-                  </a>
-                )
-              )}
+            <div className="flex items-center gap-3 pt-1" aria-label="Social media profiles">
+              {socialPlatforms.map(({ name, icon: Icon, href }) => (
+                <a
+                  key={name}
+                  href={href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label={`Follow VR World on ${name}`}
+                  className="w-9 h-9 rounded-lg bg-white/5 hover:bg-primary/20 flex items-center justify-center text-white/50 hover:text-primary transition-all duration-300"
+                >
+                  <Icon size={16} aria-hidden="true" />
+                </a>
+              ))}
             </div>
           </div>
 
           {/* Quick Links */}
-          <div>
-            <h4 className="text-white font-semibold mb-4 text-sm tracking-wide uppercase">
+          <nav aria-label="Footer quick links">
+            <h3 className="text-white font-semibold mb-4 text-sm tracking-wide uppercase">
               Navigation
-            </h4>
+            </h3>
             <ul className="space-y-2.5">
               {QuickLinks.map((item, i) => (
                 <li key={i}>
@@ -98,13 +118,13 @@ const Footer = () => {
                 </li>
               ))}
             </ul>
-          </div>
+          </nav>
 
           {/* Support */}
-          <div>
-            <h4 className="text-white font-semibold mb-4 text-sm tracking-wide uppercase">
+          <nav aria-label="Footer support links">
+            <h3 className="text-white font-semibold mb-4 text-sm tracking-wide uppercase">
               Support
-            </h4>
+            </h3>
             <ul className="space-y-2.5">
               {SupportLinks.map((item, i) => (
                 <li key={i}>
@@ -117,13 +137,13 @@ const Footer = () => {
                 </li>
               ))}
             </ul>
-          </div>
+          </nav>
 
           {/* Legal */}
-          <div>
-            <h4 className="text-white font-semibold mb-4 text-sm tracking-wide uppercase">
+          <nav aria-label="Footer legal links">
+            <h3 className="text-white font-semibold mb-4 text-sm tracking-wide uppercase">
               Legal
-            </h4>
+            </h3>
             <ul className="space-y-2.5">
               {LegalLinks.map((item, i) => (
                 <li key={i}>
@@ -136,7 +156,7 @@ const Footer = () => {
                 </li>
               ))}
             </ul>
-          </div>
+          </nav>
         </div>
 
         {/* Bottom bar */}

@@ -77,7 +77,10 @@ const Hero = ({ togglePlay }) => {
             >
               <img
                 src={HeroPng}
-                alt="VR Headset"
+                alt="VR World Explorer wireless virtual reality headset with spatial audio and micro-OLED display"
+                width="480"
+                height="480"
+                fetchPriority="high"
                 className="w-full max-w-md lg:max-w-lg animate-float drop-shadow-[0_20px_50px_rgba(0,194,255,0.25)]"
               />
               {/* Glow ring behind headset */}

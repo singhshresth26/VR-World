@@ -13,7 +13,10 @@ const Banner = ({ togglePlay }) => {
             <div className="relative">
               <img
                 src={BannerPng}
-                alt="VR experience showcase"
+                alt="Cinematic VR movies in virtual private IMAX theatre with spatial audio"
+                loading="lazy"
+                width="420"
+                height="420"
                 className="w-full max-w-[420px] rounded-2xl"
               />
               {/* Decorative frame */}

@@ -29,23 +29,31 @@ const AppStore = () => {
             className="flex flex-wrap justify-center gap-5 mt-8"
           >
             <a
-              href="#"
+              href="#appstore"
+              aria-label="Download VR World companion app on Apple App Store"
               className="hover:scale-105 transition-transform duration-300"
             >
               <img
                 src={AppStoreImg}
-                alt="Download on the App Store"
-                className="h-12 sm:h-14"
+                alt="Download VR World companion app on Apple App Store"
+                loading="lazy"
+                width="160"
+                height="48"
+                className="h-12 sm:h-14 w-auto"
               />
             </a>
             <a
-              href="#"
+              href="#playstore"
+              aria-label="Get VR World companion app on Google Play Store"
               className="hover:scale-105 transition-transform duration-300"
             >
               <img
                 src={PlayStoreImg}
-                alt="Get it on Google Play"
-                className="h-12 sm:h-14"
+                alt="Get VR World companion app on Google Play Store"
+                loading="lazy"
+                width="160"
+                height="48"
+                className="h-12 sm:h-14 w-auto"
               />
             </a>
           </div>

@@ -6,6 +6,7 @@ import Banner2 from "../Components/Banner/Banner2";
 import Features from "../Components/Features/Features";
 import Testimonials from "../Components/Testimonials/Testimonials";
 import AppStore from "../Components/AppStore/AppStore";
+import SEO from "../Components/SEO/SEO";
 import AOS from "aos";
 
 const HomePage = ({ togglePlay }) => {
@@ -15,7 +16,13 @@ const HomePage = ({ togglePlay }) => {
   }, []);
 
   return (
-    <div className="page-enter">
+    <main className="page-enter">
+      <SEO
+        title="VR World — Immersive Virtual Reality, Games & Metaverse Experiences"
+        description="Step into the future with VR World. Discover ultra-responsive VR headsets, immersive 360° movies, multiplayer games, and virtual reality experiences."
+        keywords="VR World, virtual reality platform, metaverse, VR games, 6DoF headsets, VR movies, spatial audio"
+        canonical="https://vrworld.com/"
+      />
       <Hero togglePlay={togglePlay} />
       <Quotes />
       <Banner togglePlay={togglePlay} />
@@ -23,7 +30,7 @@ const HomePage = ({ togglePlay }) => {
       <Features />
       <Testimonials />
       <AppStore />
-    </div>
+    </main>
   );
 };
 

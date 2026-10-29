@@ -65,7 +65,10 @@ const Banner2 = ({ togglePlay }) => {
             <div className="relative">
               <img
                 src={BannerPng}
-                alt="Social VR gaming"
+                alt="Social VR multiplayer gameplay and virtual reality co-op avatar interaction"
+                loading="lazy"
+                width="420"
+                height="420"
                 className="w-full max-w-[420px] rounded-2xl"
               />
               <div className="absolute -inset-3 border border-secondary/20 rounded-3xl -z-10" />
